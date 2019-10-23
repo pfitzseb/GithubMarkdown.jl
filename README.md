@@ -5,16 +5,13 @@
 
 Render a markdown file (conforming to the [gfm spec](https://github.github.com/gfm/)) to an `IOBuffer` or directly to a file.
 
----
 
 ```
-    rendergfm(fileout::AbstractString, file::AbstractString; documenter = false, format="html")
-    rendergfm(io, file::AbstractString; documenter = false, format="html")
+rendergfm(fileout::AbstractString, file::AbstractString; documenter = false, format="html")
+rendergfm(io, file::AbstractString; documenter = false, format="html")
 ```
 
 Render the markdown document `file` to `fileout` or `io`, following the cmark-gfm spec.
 
 - `documenter`: Wraps the output in a Documenter `@raw`-block of the specified format.
 - `format`: Can be one of `html`, `xml`, `man`, `commonmark`, `plaintext`, `latex`.
-
-Spec: https://github.github.com/gfm/
