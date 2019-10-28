@@ -1,4 +1,4 @@
-module GFM
+module GithubMarkdown
 
 export rendergfm
 

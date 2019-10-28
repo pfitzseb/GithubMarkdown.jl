@@ -1,7 +1,7 @@
-using GFM
+using GithubMarkdown
 using Test
 
-@testset "GFM.jl" begin
+@testset "GithubMarkdown.jl" begin
     @testset "html" begin
         io = IOBuffer()
         rendergfm(io, joinpath(@__DIR__, "test1.md"); format = "html")

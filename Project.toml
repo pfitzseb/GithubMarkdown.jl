@@ -1,4 +1,4 @@
-name = "GFM"
+name = "GithubMarkdown"
 uuid = "ecb7cac2-dae3-4a6f-a5f6-8274be99c6cb"
 authors = ["Sebastian Pfitzner"]
 version = "0.1.0"
