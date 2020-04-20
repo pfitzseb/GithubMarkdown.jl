@@ -1,7 +1,7 @@
 name = "GithubMarkdown"
 uuid = "ecb7cac2-dae3-4a6f-a5f6-8274be99c6cb"
 authors = ["Sebastian Pfitzner"]
-version = "0.1.1"
+version = "0.1.2"
 
 [deps]
 BinaryProvider = "b99e7846-7c00-51b0-8f62-c81ae34c0232"
