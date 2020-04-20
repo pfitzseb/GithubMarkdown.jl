@@ -44,5 +44,9 @@ cd(@__DIR__) do
         @test_throws ArgumentError rendergfm("dontwriteme", "test1.md"; extensions = ["nope"])
         @test !isfile("dontwriteme")
     end
+
+    @testset "string inputs" begin
+        @test strip(rendergfm("a **b** c")) == "<p>a <strong>b</strong> c</p>"
+    end
 end
 end
