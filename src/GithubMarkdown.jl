@@ -64,6 +64,18 @@ Spec: https://github.github.com/gfm/
 """
 function rendergfm end
 
+
+"""
+    rendergfm(input::AbstractString; documenter = false, format="html", removehtml = false, extensions=EXTENSIONS)::String
+
+Render the `input` string and return the resulting HTML as a string.
+"""
+function rendergfm(input::AbstractString; kwargs...)
+    out = IOBuffer()
+    rendergfm(out, IOBuffer(input); kwargs...)
+    return String(take!(out))
+end
+
 function rendergfm(output::AbstractString, input::AbstractString; kwargs...)
     io = IOBuffer()
     rendergfm(io, input; kwargs...)
@@ -72,7 +84,7 @@ function rendergfm(output::AbstractString, input::AbstractString; kwargs...)
         write(input, seekstart(io))
     end
 
-    return output
+    return nothing
 end
 
 function rendergfm(output::IO, input::AbstractString; kwargs...)
