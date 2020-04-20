@@ -15,3 +15,10 @@ Render the markdown document `file` to `fileout` or `io`, following the cmark-gf
 
 - `documenter`: Wraps the output in a Documenter `@raw`-block of the specified format.
 - `format`: Can be one of `html`, `xml`, `man`, `commonmark`, `plaintext`, `latex`.
+
+You can also use `rendergfm` to work with strings directly:
+
+```
+julia> "a **b** c `def` [g](https://julialang.org)" |> rendergfm
+"<p>a <strong>b</strong> c <code>def</code> <a href=\"https://julialang.org\">g</a></p>\n"
+```
