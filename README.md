@@ -1,6 +1,6 @@
 # GithubMarkdown.jl
 
-[![Build Status](https://travis-ci.com/pfitzseb/GithubMarkdown.jl.svg?branch=master)](https://travis-ci.com/pfitzseb/GithubMarkdown.jl)
+[![CI](https://github.com/pfitzseb/GithubMarkdown.jl/actions/workflows/CI.yml/badge.svg)](https://github.com/pfitzseb/GithubMarkdown.jl/actions/workflows/CI.yml)
 [![Codecov](https://codecov.io/gh/pfitzseb/GithubMarkdown.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/pfitzseb/GithubMarkdown.jl)
 
 Render a markdown file (conforming to the [gfm spec](https://github.github.com/gfm/)) to an `IOBuffer` or directly to a file.
