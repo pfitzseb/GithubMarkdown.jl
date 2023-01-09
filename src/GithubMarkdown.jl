@@ -1,31 +1,8 @@
 module GithubMarkdown
 
+using gfm_jll
+
 export rendergfm
-
-const libpath = normpath(joinpath(@__DIR__, "..", "deps", "usr", "lib"))
-const binary_path = normpath(joinpath(@__DIR__, "..", "deps", "usr", "bin", "cmark-gfm"))
-
-@static if Sys.iswindows()
-    const execenv = ("PATH" => string(libpath, ";", Sys.BINDIR))
-elseif Sys.isapple()
-    const execenv = ("DYLD_LIBRARY_PATH" => libpath)
-else
-    const execenv = ("LD_LIBRARY_PATH" => libpath)
-end
-
-# Load in `deps.jl`, complaining if it does not exist
-const depsjl_path = joinpath(@__DIR__, "..", "deps", "deps.jl")
-if !isfile(depsjl_path)
-    error("GithubMarkdown not installed properly, run Pkg.build(\"GithubMarkdown\"), restart Julia and try again")
-end
-include(depsjl_path)
-
-# Module initialization function
-function __init__()
-    # Always check your dependencies from `deps.jl`
-    check_deps()
-end
-
 
 const EXTENSIONS = [
     "footnotes",
@@ -63,7 +40,6 @@ Render the markdown document `input` to `output`, following the cmark-gfm spec.
 Spec: https://github.github.com/gfm/
 """
 function rendergfm end
-
 
 """
     rendergfm(input::AbstractString; documenter = false, format="html", removehtml = false, extensions=EXTENSIONS)::String
@@ -123,12 +99,10 @@ function rendergfm(output::IO, input::IO; documenter = false, format="html", rem
         push!(flags, ext)
     end
 
-    withenv(execenv) do
-        documenter && println(output, "````````````@raw ", format)
-        p = pipeline(input, `$(binary_path) $(flags)`)
-        print(output, read(p, String))
-        documenter && println(output, "\n````````````")
-    end
+    documenter && println(output, "````````````@raw ", format)
+    p = pipeline(input, `$(gfm_jll.gfm()) $(flags)`)
+    print(output, read(p, String))
+    documenter && println(output, "\n````````````")
 
     return nothing
 end
